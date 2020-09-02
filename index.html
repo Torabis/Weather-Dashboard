@@ -40,19 +40,19 @@
     </header>
     <div class="container">
       <div class="row">
-        <div class="col-4">
-          <div class="card" style="width: 23rem">
-            <div class="card-header">City</div>
+        <div class="col" id="city-column">
+          <div class="card">
+            <div class="card-header text-center">Search History</div>
             <ul class="list-group list-group-flush" id="city-list"></ul>
             <br>
             <button class="btn-clear">Clear</button>
           </div>
         </div>
-        <div class="col-8">
+        <div class="col-8" id="current-city">
           <div class="jumbotron">
-            <h1 class="display-3" id="currentCity"></h1>
+            <h1 class="display-3" >TODAY</h1>
             <h3 class="display-6" id="current-date"></h3>
-            <hr class="my-4" />
+            <hr class="m-4" />
             <img id="img"/>
             <p class="lead" id="temperature"></p>
             <p class="lead" id="humidity"></p>
