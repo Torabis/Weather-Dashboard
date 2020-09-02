@@ -5,6 +5,7 @@ $("#btn-citySearch").click(function () {
   event.preventDefault();
   let searchedCity = $("#citySearch-inp").val().trim();
 
+
   let todayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}`;
   fetch(todayUrl)
     .then(function (response) {
@@ -20,7 +21,7 @@ $("#btn-citySearch").click(function () {
       let icon = response.weather[0].icon;
       let iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
 
-      $("#city-list").after(`<li>${cityName}</li>`);
+      $("#city-list").after(`<p>${cityName}</p>`);
 
       $("#current-date").text(currentDate + " ");
       $("#currentCity").text(cityName + ",  ");
@@ -65,11 +66,13 @@ $("#btn-citySearch").click(function () {
             let iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
             let temp = ((Resdata.temp.day - 273.15) * 1.8 + 32).toFixed();
             let humidity = Resdata.humidity;
-
-            $(this).append(
-              `<p class = col-6 >${day}</p><p class = col-6 >Temperature:  ${temp}  °F </p><p class = col-6 >Humidity:  ${humidity}  % </p>`
+            $(this).empty();
+            let newFiveDays = $(this).append(
+              `<p class = col-6 >${day}</p><img src="${iconUrl}"><p class = col-6 >Temperature:  ${temp}  °F </p><p class = col-6 >Humidity:  ${humidity}  % </p>`
             );
           });
         });
     });
 });
+
+// })
