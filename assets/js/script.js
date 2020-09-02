@@ -4,7 +4,7 @@ let apiKey = "f61c25ccc3ebc66abfbc574449b8e000";
 $("#btn-citySearch").click(function () {
   event.preventDefault();
   let searchedCity = $("#citySearch-inp").val().trim();
-  
+
   let todayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}`;
   fetch(todayUrl)
     .then(function (response) {
@@ -53,32 +53,23 @@ $("#btn-citySearch").click(function () {
       let fiveUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly&appid=${apiKey}`;
       fetch(fiveUrl)
         .then(function (response2) {
-        //   console.log(response2.json());
+          //   console.log(response2.json());
           return response2.json();
         })
-        .then(function (response2) {
-          $(".five-days").each(function (index) {
-            let dailyForecast = response2.daily[index + 1];
-            let dateEl = dailyForecast.dt;
-            let day = moment.unix(dateEl).format("l");
-            let icon = dailyForecast.weather[0].icon;
+        .then(function (response3) {
+          $(".each-day").each(function (index) {
+            let Resdata = response3.daily[index + 1];
+            let dateElem = Resdata.dt;
+            let day = moment.unix(dateElem).format("l");
+            let icon = Resdata.weather[0].icon;
             let iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
-            let temp = ((dailyForecast.temp.day - 273.15) * 1.8 + 32).toFixed();
-            let humidity = dailyForecast.humidity;
+            let temp = ((Resdata.temp.day - 273.15) * 1.8 + 32).toFixed();
+            let humidity = Resdata.humidity;
 
-            $(this).append(`<ui>${day}<ui>`);
-            // $(this).after(`<img "src=" ${iconUrl}/>`);
-            $(this).after(`<li>Temperature:  ${temp}  °F </li>`);
-            $(this).after(`<li>Humidity:  ${humidity}  % </li>`);
+            $(this).append(
+              `<p class = col-6 >${day}</p><p class = col-6 >Temperature:  ${temp}  °F </p><p class = col-6 >Humidity:  ${humidity}  % </p>`
+            );
           });
         });
     });
 });
-function renderCityBtn() {
-    for (let i = 0; i < cityWeather.length; i++) {
-        let cityBtn = $("<button>").text(cityWeather[i]);
-        $(".button-storage").append(cityBtn);
-
-    }
-}
-
