@@ -1,16 +1,29 @@
 # Weather-Dashboard
-UCB module 6 - Project
 
-# GIVEN a weather dashboard with form inputs
-*WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-*WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-*WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-*WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-*WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
+## Description
+This application presents weather conditions (the temperature, the humidity, the wind speed, the UV index and  5-day forecast ) based on searched city. Also you can see your search history to check the weather again.
 
-https://torabis.github.io/Weather-Dashboard/
+## Table of Contents
+
+- [Technologies](#Technologies)
+- [Install](#Install)
+- [Demon](#Demo)
+- [Me](#Me)
+
+# Technologies
+- HTML
+- CSS
+- JAVASCRIPT
+- Moment.js
+- OpenWeather-Api
+
+## Install 
+- clone the repo using
+```git clone "the repo address here"```
+
+
+# Demo
+[![Deployed](https://img.shields.io/badge/Deployed-App-52A55D.svg)](https://torabis.github.io/Weather-Dashboard/)
+
+## Me
+[![Github](https://img.shields.io/badge/Github-Torabis-52A55D.svg)](https://github.com/Torabis)
