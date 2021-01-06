@@ -10,7 +10,7 @@ $(document).ready(function () {
       `<li class="list-group-item text-center city-list btn" id="${value}">${value}</li>`
     );
   });
-  if(citiesObj[0] != null) {
+  if(!$.isEmptyObject(citiesObj)) {
     searchedCity = citiesObj[0];
     getWeatherByCity();
     }
@@ -56,7 +56,7 @@ $(document).ready(function () {
             cities = localStorage.getItem("cities");
             citiesObj = cities ? JSON.parse(cities) : [];
             // console.log(response.name);
-            $("#city-list").appendHtml(
+            $("#city-list").after(
               `<li class="list-group-item text-center city-list btn" id="${response.name}">${response.name}</li>`
               );
             citiesObj.push(response.name);
