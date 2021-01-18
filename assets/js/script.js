@@ -4,34 +4,36 @@ $(document).ready(function () {
   var searchedCity;
   cities = localStorage.getItem("cities");
   citiesObj = JSON.parse(cities);
-
+  if(!$.isEmptyObject(citiesObj)) {
+  searchedCity = citiesObj[0];
+  getWeatherByCity(searchedCity);
   $.each( citiesObj, function( key, value ) {
     $("#city-list").append(
       `<li class="list-group-item text-center city-list btn" id="${value}">${value}</li>`
     );
   });
-  if(!$.isEmptyObject(citiesObj)) {
-    searchedCity = citiesObj[0];
-    getWeatherByCity();
-    }
+  }
+
   $('.city-list').click(function() {
     searchedCity = $(this).attr('id');
-    getWeatherByCity();
+    getWeatherByCity(searchedCity);
   });
   $('.btn-clear').click(function() {
     $("#city-list").empty();
     $("#current-city").addClass("invisible");
     localStorage.clear();
+    citiesObj = null;
+    cities = null;
   });
 
-  // getWeatherByCity();
 
   $("#btn-citySearch").click(function () {
     searchedCity = $("#citySearch-inp").val().trim();
-    getWeatherByCity();
+    getWeatherByCity(searchedCity);
+    $("#citySearch-inp").val("")
     event.preventDefault();
   });
-  function getWeatherByCity() {
+  function getWeatherByCity(searchedCity) {
       lat = '';
       lon = '';
       const todayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}`;
@@ -56,7 +58,7 @@ $(document).ready(function () {
             cities = localStorage.getItem("cities");
             citiesObj = cities ? JSON.parse(cities) : [];
             // console.log(response.name);
-            $("#city-list").after(
+            $("#city-list").append(
               `<li class="list-group-item text-center city-list btn" id="${response.name}">${response.name}</li>`
               );
             citiesObj.push(response.name);
